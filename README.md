@@ -1,4 +1,4 @@
-# intellij-foobar2000-titleformat
+# Foobar2000 Title Formatting plugin for IntelliJ
 
 ![Build](https://github.com/stengerh/intellij-foobar2000-titleformat/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/17729-foobar2000-title-formatting.svg)](https://plugins.jetbrains.com/plugin/17729-foobar2000-title-formatting)
