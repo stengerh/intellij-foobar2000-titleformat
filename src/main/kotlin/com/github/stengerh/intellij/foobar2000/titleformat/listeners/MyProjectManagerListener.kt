@@ -1,9 +1,9 @@
-package com.github.stengerh.intellijfoobar2000titleformat.listeners
+package com.github.stengerh.intellij.foobar2000.titleformat.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.stengerh.intellijfoobar2000titleformat.services.MyProjectService
+import com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

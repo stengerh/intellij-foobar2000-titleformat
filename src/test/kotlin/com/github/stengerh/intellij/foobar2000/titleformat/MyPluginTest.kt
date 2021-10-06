@@ -1,4 +1,4 @@
-package com.github.stengerh.intellijfoobar2000titleformat
+package com.github.stengerh.intellij.foobar2000.titleformat
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile

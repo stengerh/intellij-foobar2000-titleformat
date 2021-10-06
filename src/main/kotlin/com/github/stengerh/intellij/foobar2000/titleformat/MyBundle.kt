@@ -1,4 +1,4 @@
-package com.github.stengerh.intellijfoobar2000titleformat
+package com.github.stengerh.intellij.foobar2000.titleformat
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

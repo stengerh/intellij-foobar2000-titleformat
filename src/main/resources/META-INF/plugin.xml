@@ -1,18 +1,18 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.stengerh.intellijfoobar2000titleformat</id>
-    <name>intellij-foobar2000-titleformat</name>
-    <vendor>stengerh</vendor>
+    <id>com.github.stengerh.intellij.foobar2000.titleformat</id>
+    <name>Foobar2000 Title Formatting</name>
+    <vendor>Holger Stenger</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.stengerh.intellijfoobar2000titleformat.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.stengerh.intellijfoobar2000titleformat.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.stengerh.intellijfoobar2000titleformat.listeners.MyProjectManagerListener"
+        <listener class="com.github.stengerh.intellij.foobar2000.titleformat.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>
