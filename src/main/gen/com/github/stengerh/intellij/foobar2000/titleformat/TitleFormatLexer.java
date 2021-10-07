@@ -69,10 +69,10 @@ public class TitleFormatLexer implements FlexLexer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\5\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
     "\1\10\1\11\1\12\1\13\1\1\1\14\1\15\1\16"+
-    "\1\17\1\20\1\21\1\22\1\23\1\24";
+    "\1\17\1\20\1\21\1\22\1\23\1\24\1\25";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[26];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -99,11 +99,11 @@ public class TitleFormatLexer implements FlexLexer {
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\14\0\30\0\44\0\60\0\74\0\110\0\124"+
     "\0\124\0\140\0\124\0\154\0\170\0\124\0\124\0\124"+
-    "\0\204\0\14\0\124\0\124\0\44\0\60\0\124\0\124"+
-    "\0\124\0\74";
+    "\0\204\0\14\0\124\0\124\0\220\0\124\0\60\0\124"+
+    "\0\124\0\124\0\74";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[26];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -128,13 +128,14 @@ public class TitleFormatLexer implements FlexLexer {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
     "\1\16\1\17\1\20\1\21\1\22\2\0\11\22\1\23"+
-    "\2\0\3\23\1\24\5\23\1\25\2\0\1\25\1\0"+
-    "\7\25\1\26\3\0\3\26\1\0\2\26\1\0\1\26"+
-    "\1\6\12\0\1\6\2\0\1\10\31\0\1\27\15\0"+
-    "\1\30\14\0\1\31\4\0\1\6\12\0\1\32";
+    "\2\0\3\23\1\24\5\23\1\25\2\0\1\25\1\26"+
+    "\7\25\1\27\3\0\3\27\1\0\2\27\1\0\1\27"+
+    "\1\6\12\0\1\6\2\0\1\10\31\0\1\30\15\0"+
+    "\1\31\14\0\1\32\4\0\1\6\12\0\1\33\1\25"+
+    "\2\0\1\25\1\0\7\25";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[144];
+    int [] result = new int[156];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -173,10 +174,10 @@ public class TitleFormatLexer implements FlexLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\5\0\2\1\2\11\1\1\1\11\2\1\3\11\2\1"+
-    "\2\11\2\1\3\11\1\1";
+    "\2\11\1\1\1\11\1\1\3\11\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[26];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -521,102 +522,107 @@ public class TitleFormatLexer implements FlexLexer {
             { return VERBATIM_TEXT;
             } 
             // fall through
-          case 21: break;
+          case 22: break;
           case 2: 
             { return BAD_CHARACTER;
             } 
             // fall through
-          case 22: break;
+          case 23: break;
           case 3: 
             { return END_OF_LINE;
             } 
             // fall through
-          case 23: break;
+          case 24: break;
           case 4: 
             { return RIGHT_PAREN;
             } 
             // fall through
-          case 24: break;
+          case 25: break;
           case 5: 
             { yybegin(FIELD); return PERCENT;
             } 
             // fall through
-          case 25: break;
+          case 26: break;
           case 6: 
             { return COMMA;
             } 
             // fall through
-          case 26: break;
+          case 27: break;
           case 7: 
             { yybegin(STRING); return QUOTE;
             } 
             // fall through
-          case 27: break;
+          case 28: break;
           case 8: 
             { yybegin(FUNCTION); return DOLLAR;
             } 
             // fall through
-          case 28: break;
+          case 29: break;
           case 9: 
             { return LEFT_BRACKET;
             } 
             // fall through
-          case 29: break;
+          case 30: break;
           case 10: 
             { return RIGHT_BRACKET;
             } 
             // fall through
-          case 30: break;
+          case 31: break;
           case 11: 
             { return LEFT_PAREN;
             } 
             // fall through
-          case 31: break;
+          case 32: break;
           case 12: 
             { yybegin(YYINITIAL); return LINE_COMMENT;
             } 
             // fall through
-          case 32: break;
+          case 33: break;
           case 13: 
             { return QUOTED_STRING_PART;
             } 
             // fall through
-          case 33: break;
+          case 34: break;
           case 14: 
             { yybegin(YYINITIAL); return QUOTE;
             } 
             // fall through
-          case 34: break;
-          case 15: 
-            { yybegin(YYINITIAL); return FIELD_NAME;
-            } 
-            // fall through
           case 35: break;
-          case 16: 
-            { yybegin(YYINITIAL); return FUNCTION_NAME;
+          case 15: 
+            { return FIELD_NAME;
             } 
             // fall through
           case 36: break;
-          case 17: 
-            { return PERCENT_PERCENT;
+          case 16: 
+            { yybegin(YYINITIAL); return PERCENT;
             } 
             // fall through
           case 37: break;
-          case 18: 
-            { return QUOTE_QUOTE;
+          case 17: 
+            { yybegin(YYINITIAL); return FUNCTION_NAME;
             } 
             // fall through
           case 38: break;
-          case 19: 
-            { return DOLLAR_DOLLAR;
+          case 18: 
+            { return PERCENT_PERCENT;
             } 
             // fall through
           case 39: break;
-          case 20: 
-            { if (yycolumn == 0) { yybegin(COMMENT); }
+          case 19: 
+            { return QUOTE_QUOTE;
             } 
             // fall through
           case 40: break;
+          case 20: 
+            { return DOLLAR_DOLLAR;
+            } 
+            // fall through
+          case 41: break;
+          case 21: 
+            { if (yycolumn == 0) { yybegin(COMMENT); }
+            } 
+            // fall through
+          case 42: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

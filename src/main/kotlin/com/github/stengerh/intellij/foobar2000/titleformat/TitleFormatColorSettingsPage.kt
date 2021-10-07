@@ -11,9 +11,14 @@ class TitleFormatColorSettingsPage : ColorSettingsPage {
     companion object {
         val DESCRIPTORS: Array<AttributesDescriptor> = arrayOf(
             AttributesDescriptor("Comment", TitleFormatSyntaxHighlighter.COMMENT),
-            AttributesDescriptor("Brackets", TitleFormatSyntaxHighlighter.BRACKETS),
-            AttributesDescriptor("Parentheses", TitleFormatSyntaxHighlighter.PARENTHESES),
-            AttributesDescriptor("Comma", TitleFormatSyntaxHighlighter.COMMA),
+            AttributesDescriptor("Separators//Brackets", TitleFormatSyntaxHighlighter.BRACKETS),
+            AttributesDescriptor("Separators//Parentheses", TitleFormatSyntaxHighlighter.PARENTHESES),
+            AttributesDescriptor("Separators//Comma", TitleFormatSyntaxHighlighter.COMMA),
+            AttributesDescriptor("Field", TitleFormatSyntaxHighlighter.FIELD),
+            AttributesDescriptor("Function call", TitleFormatSyntaxHighlighter.FUNCTION_CALL),
+            AttributesDescriptor("Text//Quoted string", TitleFormatSyntaxHighlighter.QUOTED_STRING),
+            AttributesDescriptor("Text//Verbatim text", TitleFormatSyntaxHighlighter.VERBATIM_TEXT),
+            AttributesDescriptor("Text//Special character", TitleFormatSyntaxHighlighter.SPECIAL_CHAR),
         )
     }
 

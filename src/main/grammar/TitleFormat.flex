@@ -61,7 +61,8 @@ QUOTED_STRING_PART = [^'\r\n]
 }
 
 <FIELD> {
-  {FIELD_NAME}              { yybegin(YYINITIAL); return FIELD_NAME; }
+  {FIELD_NAME}              { return FIELD_NAME; }
+  "%"                       { yybegin(YYINITIAL); return PERCENT; }
 }
 
 <FUNCTION> {
