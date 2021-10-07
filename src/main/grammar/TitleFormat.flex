@@ -24,49 +24,37 @@ import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleForma
 %unicode
 %column
 
-%xstate COMMENT, STRING, FIELD, FUNCTION
+%xstate STRING
 
-END_OF_LINE=\r?\n
-FUNCTION_NAME=[^$()\r\n]+
-FIELD_NAME=[^%\r\n]+
+END_OF_LINE=\r\n|[\r\n]
+FUNCTION_NAME=\$[a-zA-Z0-9_]+
+FIELD_NAME=%[^%\r\n]+%
 VERBATIM_TEXT=[^$%'\[\](),\r\n]+
-QUOTED_STRING_PART = [^'\r\n]
+QUOTED_STRING_PART = [^'\r\n]+
 
 %%
 <YYINITIAL> {
-  "$"                       { yybegin(FUNCTION); return DOLLAR; }
+  {FUNCTION_NAME}           { return FUNCTION_NAME; }
   "$$"                      { return DOLLAR_DOLLAR; }
   "'"                       { yybegin(STRING); return QUOTE; }
   "''"                      { return QUOTE_QUOTE; }
-  "%"                       { yybegin(FIELD); return PERCENT; }
+  {FIELD_NAME}              { return FIELD_NAME; }
   "%%"                      { return PERCENT_PERCENT; }
   "["                       { return LEFT_BRACKET; }
   "]"                       { return RIGHT_BRACKET; }
   "("                       { return LEFT_PAREN; }
   ")"                       { return RIGHT_PAREN; }
   ","                       { return COMMA; }
-  "//"                      { if (yycolumn == 0) { yybegin(COMMENT); } }
+  ^"//"[^\r\n]*             { return LINE_COMMENT; }
   {VERBATIM_TEXT}           { return VERBATIM_TEXT; }
 
   {END_OF_LINE}             { return END_OF_LINE; }
 }
 
-<COMMENT> {
-    [^\r\n]+                { yybegin(YYINITIAL); return LINE_COMMENT; }
-}
-
 <STRING> {
   {QUOTED_STRING_PART}      { return QUOTED_STRING_PART; }
   "'"                       { yybegin(YYINITIAL); return QUOTE; }
-}
-
-<FIELD> {
-  {FIELD_NAME}              { return FIELD_NAME; }
-  "%"                       { yybegin(YYINITIAL); return PERCENT; }
-}
-
-<FUNCTION> {
-  {FUNCTION_NAME}           { yybegin(YYINITIAL); return FUNCTION_NAME; }
+  {END_OF_LINE}             { return END_OF_LINE; }
 }
 
 [^] { return BAD_CHARACTER; }

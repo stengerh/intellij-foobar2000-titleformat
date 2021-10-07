@@ -24,10 +24,7 @@ public class TitleFormatLexer implements FlexLexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
-  public static final int COMMENT = 2;
-  public static final int STRING = 4;
-  public static final int FIELD = 6;
-  public static final int FUNCTION = 8;
+  public static final int STRING = 2;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -36,7 +33,7 @@ public class TitleFormatLexer implements FlexLexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = { 
-     0,  0,  1,  1,  2,  2,  3,  3,  4, 4
+     0,  1,  2, 2
   };
 
   /** 
@@ -58,8 +55,8 @@ public class TitleFormatLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\12\0\1\2\2\0\1\1\26\0\1\7\1\4\1\0\1\6\1\12\1\3\2\0\1\5\2\0\1\13\53\0\1\10"+
-    "\1\0\1\11\242\0");
+    "\12\0\1\2\2\0\1\1\26\0\1\3\1\5\1\0\1\7\1\12\1\13\2\0\1\6\2\0\1\14\12\4\7\0"+
+    "\32\4\1\10\1\0\1\11\1\0\1\4\1\0\32\4\205\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -67,12 +64,12 @@ public class TitleFormatLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\5\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\1\11\1\12\1\13\1\1\1\14\1\15\1\16"+
-    "\1\17\1\20\1\21\1\22\1\23\1\24\1\25";
+    "\3\0\1\1\2\2\2\3\1\4\1\5\1\6\1\7"+
+    "\1\10\1\11\1\1\1\12\1\13\1\14\1\15\1\0"+
+    "\1\16\1\17\1\20\1\21";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[27];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -97,13 +94,12 @@ public class TitleFormatLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\14\0\30\0\44\0\60\0\74\0\110\0\124"+
-    "\0\124\0\140\0\124\0\154\0\170\0\124\0\124\0\124"+
-    "\0\204\0\14\0\124\0\124\0\220\0\124\0\60\0\124"+
-    "\0\124\0\124\0\74";
+    "\0\0\0\15\0\32\0\47\0\64\0\101\0\116\0\133"+
+    "\0\101\0\150\0\101\0\101\0\101\0\101\0\165\0\202"+
+    "\0\101\0\101\0\217\0\234\0\101\0\101\0\251\0\101";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[27];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -126,16 +122,18 @@ public class TitleFormatLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
-    "\1\16\1\17\1\20\1\21\1\22\2\0\11\22\1\23"+
-    "\2\0\3\23\1\24\5\23\1\25\2\0\1\25\1\26"+
-    "\7\25\1\27\3\0\3\27\1\0\2\27\1\0\1\27"+
-    "\1\6\12\0\1\6\2\0\1\10\31\0\1\30\15\0"+
-    "\1\31\14\0\1\32\4\0\1\6\12\0\1\33\1\25"+
-    "\2\0\1\25\1\0\7\25";
+    "\1\4\1\5\1\6\1\7\1\4\1\10\1\11\1\12"+
+    "\1\13\1\14\1\15\1\16\2\4\1\5\1\6\1\7"+
+    "\1\4\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
+    "\1\17\1\20\1\5\1\6\4\20\1\21\5\20\1\4"+
+    "\3\0\1\4\7\0\1\4\2\0\1\6\32\0\1\22"+
+    "\1\23\10\0\1\24\2\0\2\24\1\25\7\24\7\0"+
+    "\1\26\5\0\1\4\3\0\1\4\7\0\1\27\1\20"+
+    "\2\0\4\20\1\0\5\20\4\0\1\23\10\0\1\24"+
+    "\2\0\2\24\1\30\7\24\1\27\2\0\12\27";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[156];
+    int [] result = new int[182];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -173,11 +171,11 @@ public class TitleFormatLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\5\0\2\1\2\11\1\1\1\11\2\1\3\11\2\1"+
-    "\2\11\1\1\1\11\1\1\3\11\1\1";
+    "\3\0\2\1\1\11\2\1\1\11\1\1\4\11\2\1"+
+    "\2\11\1\1\1\0\2\11\1\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[27];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -452,11 +450,44 @@ public class TitleFormatLexer implements FlexLexer {
         }
       }
 
+      if (zzMarkedPosL > zzStartRead) {
+        switch (zzBufferL.charAt(zzMarkedPosL-1)) {
+        case '\n':
+        case '\u000B':  // fall through
+        case '\u000C':  // fall through
+        case '\u0085':  // fall through
+        case '\u2028':  // fall through
+        case '\u2029':  // fall through
+          zzAtBOL = true;
+          break;
+        case '\r': 
+          if (zzMarkedPosL < zzEndReadL)
+            zzAtBOL = zzBufferL.charAt(zzMarkedPosL) != '\n';
+          else if (zzAtEOF)
+            zzAtBOL = false;
+          else {
+            boolean eof = zzRefill();
+            zzMarkedPosL = zzMarkedPos;
+            zzEndReadL = zzEndRead;
+            zzBufferL = zzBuffer;
+            if (eof) 
+              zzAtBOL = false;
+            else 
+              zzAtBOL = zzBufferL.charAt(zzMarkedPosL) != '\n';
+          }
+          break;
+        default:
+          zzAtBOL = false;
+        }
+      }
       zzAction = -1;
 
       zzCurrentPosL = zzCurrentPos = zzStartRead = zzMarkedPosL;
 
-      zzState = ZZ_LEXSTATE[zzLexicalState];
+      if (zzAtBOL)
+        zzState = ZZ_LEXSTATE[zzLexicalState+1];
+      else
+        zzState = ZZ_LEXSTATE[zzLexicalState];
 
       // set up zzAction for empty match case:
       int zzAttributes = zzAttrL[zzState];
@@ -522,107 +553,87 @@ public class TitleFormatLexer implements FlexLexer {
             { return VERBATIM_TEXT;
             } 
             // fall through
-          case 22: break;
+          case 18: break;
           case 2: 
-            { return BAD_CHARACTER;
-            } 
-            // fall through
-          case 23: break;
-          case 3: 
             { return END_OF_LINE;
             } 
             // fall through
-          case 24: break;
+          case 19: break;
+          case 3: 
+            { return BAD_CHARACTER;
+            } 
+            // fall through
+          case 20: break;
           case 4: 
-            { return RIGHT_PAREN;
-            } 
-            // fall through
-          case 25: break;
-          case 5: 
-            { yybegin(FIELD); return PERCENT;
-            } 
-            // fall through
-          case 26: break;
-          case 6: 
             { return COMMA;
             } 
             // fall through
-          case 27: break;
-          case 7: 
+          case 21: break;
+          case 5: 
             { yybegin(STRING); return QUOTE;
             } 
             // fall through
-          case 28: break;
-          case 8: 
-            { yybegin(FUNCTION); return DOLLAR;
-            } 
-            // fall through
-          case 29: break;
-          case 9: 
+          case 22: break;
+          case 6: 
             { return LEFT_BRACKET;
             } 
             // fall through
-          case 30: break;
-          case 10: 
+          case 23: break;
+          case 7: 
             { return RIGHT_BRACKET;
             } 
             // fall through
-          case 31: break;
-          case 11: 
+          case 24: break;
+          case 8: 
             { return LEFT_PAREN;
             } 
             // fall through
-          case 32: break;
-          case 12: 
-            { yybegin(YYINITIAL); return LINE_COMMENT;
+          case 25: break;
+          case 9: 
+            { return RIGHT_PAREN;
             } 
             // fall through
-          case 33: break;
-          case 13: 
+          case 26: break;
+          case 10: 
             { return QUOTED_STRING_PART;
             } 
             // fall through
-          case 34: break;
-          case 14: 
+          case 27: break;
+          case 11: 
             { yybegin(YYINITIAL); return QUOTE;
             } 
             // fall through
-          case 35: break;
-          case 15: 
-            { return FIELD_NAME;
-            } 
-            // fall through
-          case 36: break;
-          case 16: 
-            { yybegin(YYINITIAL); return PERCENT;
-            } 
-            // fall through
-          case 37: break;
-          case 17: 
-            { yybegin(YYINITIAL); return FUNCTION_NAME;
-            } 
-            // fall through
-          case 38: break;
-          case 18: 
-            { return PERCENT_PERCENT;
-            } 
-            // fall through
-          case 39: break;
-          case 19: 
-            { return QUOTE_QUOTE;
-            } 
-            // fall through
-          case 40: break;
-          case 20: 
+          case 28: break;
+          case 12: 
             { return DOLLAR_DOLLAR;
             } 
             // fall through
-          case 41: break;
-          case 21: 
-            { if (yycolumn == 0) { yybegin(COMMENT); }
+          case 29: break;
+          case 13: 
+            { return FUNCTION_NAME;
             } 
             // fall through
-          case 42: break;
+          case 30: break;
+          case 14: 
+            { return PERCENT_PERCENT;
+            } 
+            // fall through
+          case 31: break;
+          case 15: 
+            { return QUOTE_QUOTE;
+            } 
+            // fall through
+          case 32: break;
+          case 16: 
+            { return LINE_COMMENT;
+            } 
+            // fall through
+          case 33: break;
+          case 17: 
+            { return FIELD_NAME;
+            } 
+            // fall through
+          case 34: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
