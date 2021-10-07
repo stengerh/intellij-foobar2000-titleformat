@@ -148,9 +148,50 @@ public class TitleFormatParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // Expression? (COMMA Expression?)*
   public static boolean ParameterList(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ParameterList")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, PARAMETER_LIST, "<parameter list>");
+    r = ParameterList_0(b, l + 1);
+    r = r && ParameterList_1(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // Expression?
+  private static boolean ParameterList_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ParameterList_0")) return false;
+    Expression(b, l + 1);
+    return true;
+  }
+
+  // (COMMA Expression?)*
+  private static boolean ParameterList_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ParameterList_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!ParameterList_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "ParameterList_1", c)) break;
+    }
+    return true;
+  }
+
+  // COMMA Expression?
+  private static boolean ParameterList_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ParameterList_1_0")) return false;
+    boolean r;
     Marker m = enter_section_(b);
-    exit_section_(b, m, PARAMETER_LIST, true);
+    r = consumeToken(b, COMMA);
+    r = r && ParameterList_1_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // Expression?
+  private static boolean ParameterList_1_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ParameterList_1_0_1")) return false;
+    Expression(b, l + 1);
     return true;
   }
 

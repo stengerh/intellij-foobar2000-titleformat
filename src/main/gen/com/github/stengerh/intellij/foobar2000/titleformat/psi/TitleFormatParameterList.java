@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface TitleFormatParameterList extends PsiElement {
 
+  @NotNull
+  List<TitleFormatExpression> getExpressionList();
+
 }

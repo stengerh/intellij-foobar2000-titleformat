@@ -11,16 +11,21 @@
                 serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyApplicationService"/>
         <projectService
                 serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService"/>
-        <fileType name="TitleFormat File"
-                  implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatFileType"
-                  fieldName="INSTANCE"
-                  language="TitleFormat"
-                  extensions="ftf"/>
+        <fileType
+                name="TitleFormat File"
+                implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatFileType"
+                fieldName="INSTANCE"
+                language="TitleFormat"
+                extensions="ftf"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij.lang">
-        <parserDefinition language="TitleFormat"
-                          implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatParserDefinition"/>
+        <parserDefinition
+                language="TitleFormat"
+                implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatParserDefinition"/>
+        <syntaxHighlighterFactory
+                language="TitleFormat"
+                implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatSyntaxHighlighterFactory"/>
     </extensions>
 
     <applicationListeners>

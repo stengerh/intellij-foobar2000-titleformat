@@ -27,4 +27,10 @@ public class TitleFormatParameterListImpl extends ASTWrapperPsiElement implement
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public List<TitleFormatExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatExpression.class);
+  }
+
 }

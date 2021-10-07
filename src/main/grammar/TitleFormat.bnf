@@ -24,6 +24,7 @@
         RIGHT_BRACKET = "]"
         LEFT_PAREN = "("
         RIGHT_PAREN = ")"
+        COMMA = ","
         END_OF_LINE = "regexp:\r\n"
         VERBATIM_TEXT = "regexp:[^$%'\[\](),\r\n]+"
         LINE_COMMENT = "regexp://[^\r\n]*"
@@ -72,3 +73,4 @@ FunctionCallExpression ::=
     DOLLAR FUNCTION_NAME LEFT_PAREN ParameterList RIGHT_PAREN ;
 
 ParameterList ::=
+    Expression? (COMMA Expression?)* ;

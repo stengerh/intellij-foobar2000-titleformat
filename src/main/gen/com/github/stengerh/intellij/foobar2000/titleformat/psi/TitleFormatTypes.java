@@ -19,6 +19,7 @@ public interface TitleFormatTypes {
   IElementType QUOTED_STRING_LITERAL = new TitleFormatElementType("QUOTED_STRING_LITERAL");
   IElementType VERBATIM_STRING_LITERAL = new TitleFormatElementType("VERBATIM_STRING_LITERAL");
 
+  IElementType COMMA = new TitleFormatTokenType(",");
   IElementType DOLLAR = new TitleFormatTokenType("$");
   IElementType DOLLAR_DOLLAR = new TitleFormatTokenType("$$");
   IElementType END_OF_LINE = new TitleFormatTokenType("END_OF_LINE");

@@ -3,7 +3,7 @@ package com.github.stengerh.intellij.foobar2000.titleformat;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
-import javax.annotation.processing.Generated;import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTypes.*;
 
 %%
@@ -24,7 +24,7 @@ import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleForma
 %unicode
 %column
 
-%xstate COMMENT
+%xstate COMMENT, STRING, FIELD, FUNCTION
 
 END_OF_LINE=\r?\n
 FUNCTION_NAME=[^$()\r\n]+
@@ -34,27 +34,38 @@ QUOTED_STRING_PART = [^'\r\n]
 
 %%
 <YYINITIAL> {
-  "$"                       { return DOLLAR; }
+  "$"                       { yybegin(FUNCTION); return DOLLAR; }
   "$$"                      { return DOLLAR_DOLLAR; }
-  "'"                       { return QUOTE; }
+  "'"                       { yybegin(STRING); return QUOTE; }
   "''"                      { return QUOTE_QUOTE; }
-  "%"                       { return PERCENT; }
+  "%"                       { yybegin(FIELD); return PERCENT; }
   "%%"                      { return PERCENT_PERCENT; }
   "["                       { return LEFT_BRACKET; }
   "]"                       { return RIGHT_BRACKET; }
   "("                       { return LEFT_PAREN; }
   ")"                       { return RIGHT_PAREN; }
+  ","                       { return COMMA; }
   "//"                      { if (yycolumn == 0) { yybegin(COMMENT); } }
-  {QUOTED_STRING_PART}      { return QUOTED_STRING_PART; }
   {VERBATIM_TEXT}           { return VERBATIM_TEXT; }
 
   {END_OF_LINE}             { return END_OF_LINE; }
-  {FUNCTION_NAME}           { return FUNCTION_NAME; }
-  {FIELD_NAME}              { return FIELD_NAME; }
 }
 
 <COMMENT> {
     [^\r\n]+                { yybegin(YYINITIAL); return LINE_COMMENT; }
+}
+
+<STRING> {
+  {QUOTED_STRING_PART}      { return QUOTED_STRING_PART; }
+  "'"                       { yybegin(YYINITIAL); return QUOTE; }
+}
+
+<FIELD> {
+  {FIELD_NAME}              { yybegin(YYINITIAL); return FIELD_NAME; }
+}
+
+<FUNCTION> {
+  {FUNCTION_NAME}           { yybegin(YYINITIAL); return FUNCTION_NAME; }
 }
 
 [^] { return BAD_CHARACTER; }
