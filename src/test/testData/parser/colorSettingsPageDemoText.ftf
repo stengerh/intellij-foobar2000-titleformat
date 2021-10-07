@@ -1,0 +1,5 @@
+// This is a comment.
+[%artist% - ]%title%
+$if(%artist%,%artist% - ,)%title%
+'quoted string'
+verbatim text %% '' $$

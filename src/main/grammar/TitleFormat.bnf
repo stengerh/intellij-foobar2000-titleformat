@@ -37,17 +37,23 @@
 Script ::=
     Expression* ;
 
-Expression ::=
+private Expression ::=
     Comment |
+    SequenceExpression ;
+
+Comment ::=
+    LINE_COMMENT ;
+
+SequenceExpression ::=
+    SimpleExpression+ ;
+
+private SimpleExpression ::=
     Literal |
     OptionalExpression |
     FieldExpression |
     FunctionCallExpression ;
 
-Comment ::=
-    LINE_COMMENT ;
-
-Literal ::=
+private Literal ::=
     CharLiteral |
     QuotedStringLiteral |
     VerbatimStringLiteral ;
@@ -58,7 +64,7 @@ CharLiteral ::=
     QUOTE_QUOTE ;
 
 QuotedStringLiteral ::=
-    QUOTE QUOTED_STRING_PART QUOTE ;
+    QUOTE QUOTED_STRING_PART* QUOTE ;
 
 VerbatimStringLiteral ::=
     VERBATIM_TEXT ;
@@ -67,10 +73,7 @@ OptionalExpression ::=
     LEFT_BRACKET Expression* RIGHT_BRACKET ;
 
 FieldExpression ::=
-    PERCENT FIELD_NAME PERCENT ;
+    FIELD_NAME ;
 
 FunctionCallExpression ::=
-    DOLLAR FUNCTION_NAME LEFT_PAREN ParameterList RIGHT_PAREN ;
-
-ParameterList ::=
-    Expression? (COMMA Expression?)* ;
+    FUNCTION_NAME LEFT_PAREN Expression? (COMMA Expression?)* RIGHT_PAREN ;

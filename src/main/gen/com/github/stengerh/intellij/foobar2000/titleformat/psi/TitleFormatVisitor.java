@@ -15,10 +15,6 @@ public class TitleFormatVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitExpression(@NotNull TitleFormatExpression o) {
-    visitPsiElement(o);
-  }
-
   public void visitFieldExpression(@NotNull TitleFormatFieldExpression o) {
     visitPsiElement(o);
   }
@@ -27,19 +23,15 @@ public class TitleFormatVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitLiteral(@NotNull TitleFormatLiteral o) {
-    visitPsiElement(o);
-  }
-
   public void visitOptionalExpression(@NotNull TitleFormatOptionalExpression o) {
     visitPsiElement(o);
   }
 
-  public void visitParameterList(@NotNull TitleFormatParameterList o) {
+  public void visitQuotedStringLiteral(@NotNull TitleFormatQuotedStringLiteral o) {
     visitPsiElement(o);
   }
 
-  public void visitQuotedStringLiteral(@NotNull TitleFormatQuotedStringLiteral o) {
+  public void visitSequenceExpression(@NotNull TitleFormatSequenceExpression o) {
     visitPsiElement(o);
   }
 

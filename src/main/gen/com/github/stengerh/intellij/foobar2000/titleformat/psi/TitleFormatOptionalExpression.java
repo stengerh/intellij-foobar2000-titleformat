@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface TitleFormatOptionalExpression extends PsiElement {
 
   @NotNull
-  List<TitleFormatExpression> getExpressionList();
+  List<TitleFormatComment> getCommentList();
+
+  @NotNull
+  List<TitleFormatSequenceExpression> getSequenceExpressionList();
 
 }

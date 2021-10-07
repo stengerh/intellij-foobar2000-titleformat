@@ -61,39 +61,42 @@ class TitleFormatSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer = TitleFormatLexerAdapter()
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> {
-        return when {
-            TitleFormatTypes.LINE_COMMENT.equals(tokenType) -> {
+        if (tokenType == null) {
+            return EMPTY_KEYS;
+        }
+        return when (tokenType) {
+            TitleFormatTypes.LINE_COMMENT -> {
                 COMMENT_KEYS
             }
-            TitleFormatTypes.LEFT_BRACKET.equals(tokenType)
-                    || TitleFormatTypes.RIGHT_BRACKET.equals(tokenType) -> {
+            TitleFormatTypes.LEFT_BRACKET,
+            TitleFormatTypes.RIGHT_BRACKET -> {
                 BRACKETS_KEYS
             }
-            TitleFormatTypes.LEFT_PAREN.equals(tokenType)
-                    || TitleFormatTypes.RIGHT_PAREN.equals(tokenType) -> {
+            TitleFormatTypes.LEFT_PAREN,
+            TitleFormatTypes.RIGHT_PAREN -> {
                 PARENTHESES_KEYS
             }
-            TitleFormatTypes.COMMA.equals(tokenType) -> {
+            TitleFormatTypes.COMMA -> {
                 COMMA_KEYS
             }
-            TitleFormatTypes.PERCENT.equals(tokenType)
-                    || TitleFormatTypes.FIELD_NAME.equals(tokenType) -> {
+            TitleFormatTypes.PERCENT,
+            TitleFormatTypes.FIELD_NAME -> {
                 FIELD_KEYS
             }
-            TitleFormatTypes.DOLLAR.equals(tokenType)
-                    || TitleFormatTypes.FUNCTION_NAME.equals(tokenType) -> {
+            TitleFormatTypes.DOLLAR,
+            TitleFormatTypes.FUNCTION_NAME -> {
                 FUNCTION_CALL_KEYS
             }
-            TitleFormatTypes.QUOTE.equals(tokenType)
-                    || TitleFormatTypes.QUOTED_STRING_PART.equals(tokenType) -> {
+            TitleFormatTypes.QUOTE,
+            TitleFormatTypes.QUOTED_STRING_PART -> {
                 QUOTED_STRING_KEYS
             }
-            TitleFormatTypes.VERBATIM_TEXT.equals(tokenType) -> {
+            TitleFormatTypes.VERBATIM_TEXT -> {
                 VERBATIM_TEXT_KEYS
             }
-            TitleFormatTypes.DOLLAR_DOLLAR.equals(tokenType)
-                    || TitleFormatTypes.PERCENT_PERCENT.equals(tokenType)
-                    || TitleFormatTypes.QUOTE_QUOTE.equals(tokenType) -> {
+            TitleFormatTypes.DOLLAR_DOLLAR,
+            TitleFormatTypes.PERCENT_PERCENT,
+            TitleFormatTypes.QUOTE_QUOTE -> {
                 SPECIAL_CHAR_KEYS
             }
             else -> {

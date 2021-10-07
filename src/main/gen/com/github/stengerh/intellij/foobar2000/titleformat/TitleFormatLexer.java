@@ -6,6 +6,7 @@ import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTypes.*;
 
 
@@ -555,7 +556,7 @@ public class TitleFormatLexer implements FlexLexer {
             // fall through
           case 18: break;
           case 2: 
-            { return END_OF_LINE;
+            { return WHITE_SPACE;
             } 
             // fall through
           case 19: break;

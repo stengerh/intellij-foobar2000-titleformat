@@ -10,13 +10,11 @@ public interface TitleFormatTypes {
 
   IElementType CHAR_LITERAL = new TitleFormatElementType("CHAR_LITERAL");
   IElementType COMMENT = new TitleFormatElementType("COMMENT");
-  IElementType EXPRESSION = new TitleFormatElementType("EXPRESSION");
   IElementType FIELD_EXPRESSION = new TitleFormatElementType("FIELD_EXPRESSION");
   IElementType FUNCTION_CALL_EXPRESSION = new TitleFormatElementType("FUNCTION_CALL_EXPRESSION");
-  IElementType LITERAL = new TitleFormatElementType("LITERAL");
   IElementType OPTIONAL_EXPRESSION = new TitleFormatElementType("OPTIONAL_EXPRESSION");
-  IElementType PARAMETER_LIST = new TitleFormatElementType("PARAMETER_LIST");
   IElementType QUOTED_STRING_LITERAL = new TitleFormatElementType("QUOTED_STRING_LITERAL");
+  IElementType SEQUENCE_EXPRESSION = new TitleFormatElementType("SEQUENCE_EXPRESSION");
   IElementType VERBATIM_STRING_LITERAL = new TitleFormatElementType("VERBATIM_STRING_LITERAL");
 
   IElementType COMMA = new TitleFormatTokenType(",");
@@ -46,26 +44,20 @@ public interface TitleFormatTypes {
       else if (type == COMMENT) {
         return new TitleFormatCommentImpl(node);
       }
-      else if (type == EXPRESSION) {
-        return new TitleFormatExpressionImpl(node);
-      }
       else if (type == FIELD_EXPRESSION) {
         return new TitleFormatFieldExpressionImpl(node);
       }
       else if (type == FUNCTION_CALL_EXPRESSION) {
         return new TitleFormatFunctionCallExpressionImpl(node);
       }
-      else if (type == LITERAL) {
-        return new TitleFormatLiteralImpl(node);
-      }
       else if (type == OPTIONAL_EXPRESSION) {
         return new TitleFormatOptionalExpressionImpl(node);
       }
-      else if (type == PARAMETER_LIST) {
-        return new TitleFormatParameterListImpl(node);
-      }
       else if (type == QUOTED_STRING_LITERAL) {
         return new TitleFormatQuotedStringLiteralImpl(node);
+      }
+      else if (type == SEQUENCE_EXPRESSION) {
+        return new TitleFormatSequenceExpressionImpl(node);
       }
       else if (type == VERBATIM_STRING_LITERAL) {
         return new TitleFormatVerbatimStringLiteralImpl(node);

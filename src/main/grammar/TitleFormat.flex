@@ -4,6 +4,7 @@ import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTypes.*;
 
 %%
@@ -48,13 +49,13 @@ QUOTED_STRING_PART = [^'\r\n]+
   ^"//"[^\r\n]*             { return LINE_COMMENT; }
   {VERBATIM_TEXT}           { return VERBATIM_TEXT; }
 
-  {END_OF_LINE}             { return END_OF_LINE; }
+  {END_OF_LINE}             { return WHITE_SPACE; }
 }
 
 <STRING> {
   {QUOTED_STRING_PART}      { return QUOTED_STRING_PART; }
   "'"                       { yybegin(YYINITIAL); return QUOTE; }
-  {END_OF_LINE}             { return END_OF_LINE; }
+  {END_OF_LINE}             { return WHITE_SPACE; }
 }
 
 [^] { return BAD_CHARACTER; }

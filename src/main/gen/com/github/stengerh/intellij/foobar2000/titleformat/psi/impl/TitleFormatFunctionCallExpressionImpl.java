@@ -29,8 +29,14 @@ public class TitleFormatFunctionCallExpressionImpl extends ASTWrapperPsiElement 
 
   @Override
   @NotNull
-  public TitleFormatParameterList getParameterList() {
-    return findNotNullChildByClass(TitleFormatParameterList.class);
+  public List<TitleFormatComment> getCommentList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatComment.class);
+  }
+
+  @Override
+  @NotNull
+  public List<TitleFormatSequenceExpression> getSequenceExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatSequenceExpression.class);
   }
 
   @Override

@@ -8,7 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface TitleFormatFunctionCallExpression extends PsiElement {
 
   @NotNull
-  TitleFormatParameterList getParameterList();
+  List<TitleFormatComment> getCommentList();
+
+  @NotNull
+  List<TitleFormatSequenceExpression> getSequenceExpressionList();
 
   @NotNull
   PsiElement getFunctionName();

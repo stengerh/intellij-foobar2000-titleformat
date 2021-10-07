@@ -64,61 +64,88 @@ public class TitleFormatParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // Comment |
-  //     Literal |
-  //     OptionalExpression |
-  //     FieldExpression |
-  //     FunctionCallExpression
-  public static boolean Expression(PsiBuilder b, int l) {
+  //     SequenceExpression
+  static boolean Expression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Expression")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, EXPRESSION, "<expression>");
     r = Comment(b, l + 1);
-    if (!r) r = Literal(b, l + 1);
-    if (!r) r = OptionalExpression(b, l + 1);
-    if (!r) r = FieldExpression(b, l + 1);
-    if (!r) r = FunctionCallExpression(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
+    if (!r) r = SequenceExpression(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // PERCENT FIELD_NAME PERCENT
+  // FIELD_NAME
   public static boolean FieldExpression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FieldExpression")) return false;
-    if (!nextTokenIs(b, PERCENT)) return false;
+    if (!nextTokenIs(b, FIELD_NAME)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, PERCENT, FIELD_NAME, PERCENT);
+    r = consumeToken(b, FIELD_NAME);
     exit_section_(b, m, FIELD_EXPRESSION, r);
     return r;
   }
 
   /* ********************************************************** */
-  // DOLLAR FUNCTION_NAME LEFT_PAREN ParameterList RIGHT_PAREN
+  // FUNCTION_NAME LEFT_PAREN Expression? (COMMA Expression?)* RIGHT_PAREN
   public static boolean FunctionCallExpression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FunctionCallExpression")) return false;
-    if (!nextTokenIs(b, DOLLAR)) return false;
+    if (!nextTokenIs(b, FUNCTION_NAME)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, DOLLAR, FUNCTION_NAME, LEFT_PAREN);
-    r = r && ParameterList(b, l + 1);
+    r = consumeTokens(b, 0, FUNCTION_NAME, LEFT_PAREN);
+    r = r && FunctionCallExpression_2(b, l + 1);
+    r = r && FunctionCallExpression_3(b, l + 1);
     r = r && consumeToken(b, RIGHT_PAREN);
     exit_section_(b, m, FUNCTION_CALL_EXPRESSION, r);
     return r;
+  }
+
+  // Expression?
+  private static boolean FunctionCallExpression_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionCallExpression_2")) return false;
+    Expression(b, l + 1);
+    return true;
+  }
+
+  // (COMMA Expression?)*
+  private static boolean FunctionCallExpression_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionCallExpression_3")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!FunctionCallExpression_3_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "FunctionCallExpression_3", c)) break;
+    }
+    return true;
+  }
+
+  // COMMA Expression?
+  private static boolean FunctionCallExpression_3_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionCallExpression_3_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COMMA);
+    r = r && FunctionCallExpression_3_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // Expression?
+  private static boolean FunctionCallExpression_3_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionCallExpression_3_0_1")) return false;
+    Expression(b, l + 1);
+    return true;
   }
 
   /* ********************************************************** */
   // CharLiteral |
   //     QuotedStringLiteral |
   //     VerbatimStringLiteral
-  public static boolean Literal(PsiBuilder b, int l) {
+  static boolean Literal(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Literal")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, LITERAL, "<literal>");
     r = CharLiteral(b, l + 1);
     if (!r) r = QuotedStringLiteral(b, l + 1);
     if (!r) r = VerbatimStringLiteral(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -148,63 +175,28 @@ public class TitleFormatParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Expression? (COMMA Expression?)*
-  public static boolean ParameterList(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ParameterList")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, PARAMETER_LIST, "<parameter list>");
-    r = ParameterList_0(b, l + 1);
-    r = r && ParameterList_1(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // Expression?
-  private static boolean ParameterList_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ParameterList_0")) return false;
-    Expression(b, l + 1);
-    return true;
-  }
-
-  // (COMMA Expression?)*
-  private static boolean ParameterList_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ParameterList_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!ParameterList_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "ParameterList_1", c)) break;
-    }
-    return true;
-  }
-
-  // COMMA Expression?
-  private static boolean ParameterList_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ParameterList_1_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, COMMA);
-    r = r && ParameterList_1_0_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // Expression?
-  private static boolean ParameterList_1_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ParameterList_1_0_1")) return false;
-    Expression(b, l + 1);
-    return true;
-  }
-
-  /* ********************************************************** */
-  // QUOTE QUOTED_STRING_PART QUOTE
+  // QUOTE QUOTED_STRING_PART* QUOTE
   public static boolean QuotedStringLiteral(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "QuotedStringLiteral")) return false;
     if (!nextTokenIs(b, QUOTE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, QUOTE, QUOTED_STRING_PART, QUOTE);
+    r = consumeToken(b, QUOTE);
+    r = r && QuotedStringLiteral_1(b, l + 1);
+    r = r && consumeToken(b, QUOTE);
     exit_section_(b, m, QUOTED_STRING_LITERAL, r);
     return r;
+  }
+
+  // QUOTED_STRING_PART*
+  private static boolean QuotedStringLiteral_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "QuotedStringLiteral_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, QUOTED_STRING_PART)) break;
+      if (!empty_element_parsed_guard_(b, "QuotedStringLiteral_1", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -217,6 +209,37 @@ public class TitleFormatParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(b, "Script", c)) break;
     }
     return true;
+  }
+
+  /* ********************************************************** */
+  // SimpleExpression+
+  public static boolean SequenceExpression(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "SequenceExpression")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, SEQUENCE_EXPRESSION, "<sequence expression>");
+    r = SimpleExpression(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!SimpleExpression(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "SequenceExpression", c)) break;
+    }
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // Literal |
+  //     OptionalExpression |
+  //     FieldExpression |
+  //     FunctionCallExpression
+  static boolean SimpleExpression(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "SimpleExpression")) return false;
+    boolean r;
+    r = Literal(b, l + 1);
+    if (!r) r = OptionalExpression(b, l + 1);
+    if (!r) r = FieldExpression(b, l + 1);
+    if (!r) r = FunctionCallExpression(b, l + 1);
+    return r;
   }
 
   /* ********************************************************** */

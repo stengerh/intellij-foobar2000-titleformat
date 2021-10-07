@@ -29,8 +29,14 @@ public class TitleFormatOptionalExpressionImpl extends ASTWrapperPsiElement impl
 
   @Override
   @NotNull
-  public List<TitleFormatExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatExpression.class);
+  public List<TitleFormatComment> getCommentList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatComment.class);
+  }
+
+  @Override
+  @NotNull
+  public List<TitleFormatSequenceExpression> getSequenceExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TitleFormatSequenceExpression.class);
   }
 
 }

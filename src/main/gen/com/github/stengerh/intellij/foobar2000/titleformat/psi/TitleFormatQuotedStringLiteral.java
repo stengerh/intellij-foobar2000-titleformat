@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface TitleFormatQuotedStringLiteral extends PsiElement {
 
-  @NotNull
-  PsiElement getQuotedStringPart();
-
 }

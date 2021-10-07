@@ -27,10 +27,4 @@ public class TitleFormatQuotedStringLiteralImpl extends ASTWrapperPsiElement imp
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public PsiElement getQuotedStringPart() {
-    return findNotNullChildByType(QUOTED_STRING_PART);
-  }
-
 }
