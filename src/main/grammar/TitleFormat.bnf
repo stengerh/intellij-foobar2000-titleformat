@@ -1,0 +1,74 @@
+{
+    parserClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatParser"
+    //parserUtilClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatParserUtil"
+
+    psiClassPrefix="TitleFormat"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.github.stengerh.intellij.foobar2000.titleformat.psi"
+    psiImplPackage="com.github.stengerh.intellij.foobar2000.titleformat.psi.impl"
+    //psiImplUtilClass="com.github.stengerh.intellij.foobar2000.titleformat.impl.TitleFormatPsiImplUtil"
+
+    elementTypeHolderClass="com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTypes"
+    //elementTypePrefix="TF_"
+    elementTypeClass="com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatElementType"
+    tokenTypeClass="com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTokenType"
+
+    tokens = [
+        DOLLAR = "$"
+        DOLLAR_DOLLAR = "$$"
+        QUOTE = "'"
+        QUOTE_QUOTE = "''"
+        PERCENT = "%"
+        PERCENT_PERCENT = "%%"
+        LEFT_BRACKET = "["
+        RIGHT_BRACKET = "]"
+        LEFT_PAREN = "("
+        RIGHT_PAREN = ")"
+        END_OF_LINE = "regexp:\r\n"
+        VERBATIM_TEXT = "regexp:[^$%'\[\](),\r\n]+"
+        LINE_COMMENT = "regexp://[^\r\n]*"
+        FUNCTION_NAME = "regexp:[^$()\r\n]+"
+        FIELD_NAME = "regexp:[^%\r\n]+"
+        QUOTED_STRING_PART = "regexp:[^'\r\n]"
+    ]
+}
+
+Script ::=
+    Expression* ;
+
+Expression ::=
+    Comment |
+    Literal |
+    OptionalExpression |
+    FieldExpression |
+    FunctionCallExpression ;
+
+Comment ::=
+    LINE_COMMENT ;
+
+Literal ::=
+    CharLiteral |
+    QuotedStringLiteral |
+    VerbatimStringLiteral ;
+
+CharLiteral ::=
+    DOLLAR_DOLLAR |
+    PERCENT_PERCENT |
+    QUOTE_QUOTE ;
+
+QuotedStringLiteral ::=
+    QUOTE QUOTED_STRING_PART QUOTE ;
+
+VerbatimStringLiteral ::=
+    VERBATIM_TEXT ;
+
+OptionalExpression ::=
+    LEFT_BRACKET Expression* RIGHT_BRACKET ;
+
+FieldExpression ::=
+    PERCENT FIELD_NAME PERCENT ;
+
+FunctionCallExpression ::=
+    DOLLAR FUNCTION_NAME LEFT_PAREN ParameterList RIGHT_PAREN ;
+
+ParameterList ::=
