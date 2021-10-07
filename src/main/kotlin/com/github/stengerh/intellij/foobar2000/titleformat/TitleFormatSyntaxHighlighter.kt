@@ -62,7 +62,7 @@ class TitleFormatSyntaxHighlighter : SyntaxHighlighterBase() {
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> {
         return when {
-            TitleFormatTypes.COMMENT.equals(tokenType) -> {
+            TitleFormatTypes.LINE_COMMENT.equals(tokenType) -> {
                 COMMENT_KEYS
             }
             TitleFormatTypes.LEFT_BRACKET.equals(tokenType)
