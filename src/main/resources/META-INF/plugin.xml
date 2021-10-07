@@ -7,10 +7,6 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService
-                serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyApplicationService"/>
-        <projectService
-                serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService"/>
         <fileType
                 name="TitleFormat File"
                 implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatFileType"
@@ -29,9 +25,4 @@
                 language="TitleFormat"
                 implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatSyntaxHighlighterFactory"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.stengerh.intellij.foobar2000.titleformat.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
