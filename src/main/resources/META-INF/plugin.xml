@@ -24,5 +24,8 @@
         <syntaxHighlighterFactory
                 language="TitleFormat"
                 implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatSyntaxHighlighterFactory"/>
+        <braceMatcher
+                language="TitleFormat"
+                implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormattingBraceMatcher"/>
     </extensions>
 </idea-plugin>

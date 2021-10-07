@@ -3,6 +3,8 @@
 # intellij-foobar2000-titleformat Changelog
 
 ## [Unreleased]
+### Added
+- Brace matching
 
 ## [0.0.3-alpha]
 ### Added
