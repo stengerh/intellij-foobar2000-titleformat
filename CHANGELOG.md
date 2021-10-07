@@ -3,6 +3,8 @@
 # intellij-foobar2000-titleformat Changelog
 
 ## [Unreleased]
+### Added
+- Basic support for syntax highlighting title formatting code
 
 ## [0.0.1]
 ### Added
