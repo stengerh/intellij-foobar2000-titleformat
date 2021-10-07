@@ -18,6 +18,11 @@
                   extensions="ftf"/>
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij.lang">
+        <parserDefinition language="TitleFormat"
+                          implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatParserDefinition"/>
+    </extensions>
+
     <applicationListeners>
         <listener class="com.github.stengerh.intellij.foobar2000.titleformat.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
