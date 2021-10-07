@@ -3,6 +3,8 @@
 # intellij-foobar2000-titleformat Changelog
 
 ## [Unreleased]
+
+## [0.0.3-alpha]
 ### Added
 - Proper plugin and file type icons for default and dark mode
 - Localization support
