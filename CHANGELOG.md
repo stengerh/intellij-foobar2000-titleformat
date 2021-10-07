@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - Proper plugin and file type icons for default and dark mode
+- Localization support
 
 ### Fixed
 - Lexer and parser bugs

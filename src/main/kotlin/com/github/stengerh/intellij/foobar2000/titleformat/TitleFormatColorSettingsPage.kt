@@ -10,20 +10,20 @@ import javax.swing.Icon
 class TitleFormatColorSettingsPage : ColorSettingsPage {
     companion object {
         val DESCRIPTORS: Array<AttributesDescriptor> = arrayOf(
-            AttributesDescriptor("Comment", TitleFormatSyntaxHighlighter.COMMENT),
-            AttributesDescriptor("Separators//Brackets", TitleFormatSyntaxHighlighter.BRACKETS),
-            AttributesDescriptor("Separators//Parentheses", TitleFormatSyntaxHighlighter.PARENTHESES),
-            AttributesDescriptor("Separators//Comma", TitleFormatSyntaxHighlighter.COMMA),
-            AttributesDescriptor("Field", TitleFormatSyntaxHighlighter.FIELD),
-            AttributesDescriptor("Function call", TitleFormatSyntaxHighlighter.FUNCTION_CALL),
-            AttributesDescriptor("Text//Quoted string", TitleFormatSyntaxHighlighter.QUOTED_STRING),
-            AttributesDescriptor("Text//Verbatim text", TitleFormatSyntaxHighlighter.VERBATIM_TEXT),
-            AttributesDescriptor("Text//Special character", TitleFormatSyntaxHighlighter.SPECIAL_CHAR),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.comment"), TitleFormatSyntaxHighlighter.COMMENT),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.brackets"), TitleFormatSyntaxHighlighter.BRACKETS),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.parentheses"), TitleFormatSyntaxHighlighter.PARENTHESES),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.comma"), TitleFormatSyntaxHighlighter.COMMA),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.field"), TitleFormatSyntaxHighlighter.FIELD),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.function.call"), TitleFormatSyntaxHighlighter.FUNCTION_CALL),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.string.quoted"), TitleFormatSyntaxHighlighter.QUOTED_STRING),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.string.verbatim"), TitleFormatSyntaxHighlighter.VERBATIM_TEXT),
+            AttributesDescriptor(TitleFormatBundle.messagePointer("colors.page.titleformat.attribute.string.special"), TitleFormatSyntaxHighlighter.SPECIAL_CHAR),
         )
     }
 
     override fun getDisplayName(): String {
-        return "Title Formatting"
+        return TitleFormatBundle.message("colors.page.titleformat.display.name")
     }
 
     override fun getIcon(): Icon {

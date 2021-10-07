@@ -6,7 +6,7 @@ import javax.swing.Icon
 object TitleFormatFileType : LanguageFileType(TitleFormatLanguage) {
     override fun getName(): String = "TitleFormat File"
 
-    override fun getDescription(): String = "Foobar2000 title formatting file"
+    override fun getDescription(): String = TitleFormatBundle.message("file.type.titleformat.description")
 
     override fun getDefaultExtension(): String = "ftf"
 
