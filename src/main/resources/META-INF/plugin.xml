@@ -7,8 +7,15 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService"/>
+        <applicationService
+                serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyApplicationService"/>
+        <projectService
+                serviceImplementation="com.github.stengerh.intellij.foobar2000.titleformat.services.MyProjectService"/>
+        <fileType name="TitleFormat File"
+                  implementationClass="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatFileType"
+                  fieldName="INSTANCE"
+                  language="TitleFormat"
+                  extensions="ftf"/>
     </extensions>
 
     <applicationListeners>
