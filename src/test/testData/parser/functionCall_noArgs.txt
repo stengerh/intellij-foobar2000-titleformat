@@ -1,0 +1,6 @@
+TitleFormat File(0,6)
+  TitleFormatSequenceExpressionImpl(SEQUENCE_EXPRESSION)(0,6)
+    TitleFormatFunctionCallExpressionImpl(FUNCTION_CALL_EXPRESSION)(0,6)
+      PsiElement(FUNCTION_NAME)('$not')(0,4)
+      PsiElement(()('(')(4,5)
+      PsiElement())(')')(5,6)
