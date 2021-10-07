@@ -17,6 +17,8 @@
                 fieldName="INSTANCE"
                 language="TitleFormat"
                 extensions="ftf"/>
+        <colorSettingsPage
+                implementation="com.github.stengerh.intellij.foobar2000.titleformat.TitleFormatColorSettingsPage"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij.lang">
