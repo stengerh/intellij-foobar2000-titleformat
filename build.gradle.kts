@@ -8,12 +8,16 @@ plugins {
     id("java")
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.5.30"
+    // Gradle IDEA Plugin
+    id("idea")
     // Gradle IntelliJ Plugin
     id("org.jetbrains.intellij") version "1.1.6"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.0"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.12"
+    // Gradle GrammarKit Plugin
+    id("org.jetbrains.grammarkit") version "2021.1.3"
 }
 
 group = properties("pluginGroup")
@@ -22,6 +26,12 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
+}
+
+idea {
+    module {
+        generatedSourceDirs.add(file("src/gen"))
+    }
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -50,7 +60,31 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT").toBoolean())
 }
 
-sourceSets["main"].java.srcDirs("src/main/gen")
+grammarKit {
+    grammarKitRelease = "2021.1.2"
+}
+
+sourceSets {
+    main {
+        java.srcDirs("src/gen/java")
+    }
+}
+
+val generateLexer = task<org.jetbrains.grammarkit.tasks.GenerateLexer>("generateLexer") {
+    source = "src/main/grammar/TitleFormat.flex"
+    targetDir = "src/gen/java/com/github/stengerh/intellij/foobar2000/titleformat"
+    targetClass = "TitleFormatLexer"
+    purgeOldFiles = true
+}
+
+val generateParser = task<org.jetbrains.grammarkit.tasks.GenerateParser>("generateParser") {
+    source = "src/main/grammar/TitleFormat.bnf"
+    targetRoot = "src/gen/java"
+    pathToParser = "/com/github/stengerh/intellij/foobar2000/titleformat/TitleFormatParser.java"
+    pathToPsiRoot = "/com/github/stengerh/intellij/foobar2000/titleformat/psi"
+    purgeOldFiles = true
+}
+
 
 tasks {
     // Set the JVM compatibility versions
@@ -61,6 +95,10 @@ tasks {
         }
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = it
+            dependsOn(
+                generateLexer,
+                generateParser
+            )
         }
     }
 
