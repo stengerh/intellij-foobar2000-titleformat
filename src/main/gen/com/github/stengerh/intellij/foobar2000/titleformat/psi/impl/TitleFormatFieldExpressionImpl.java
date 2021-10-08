@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.stengerh.intellij.foobar2000.titleformat.psi.TitleFormatTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.stengerh.intellij.foobar2000.titleformat.psi.*;
 
-public class TitleFormatFieldExpressionImpl extends ASTWrapperPsiElement implements TitleFormatFieldExpression {
+public class TitleFormatFieldExpressionImpl extends TitleFormatFieldExpressionMixin implements TitleFormatFieldExpression {
 
   public TitleFormatFieldExpressionImpl(@NotNull ASTNode node) {
     super(node);

@@ -73,7 +73,9 @@ OptionalExpression ::=
     LEFT_BRACKET Expression* RIGHT_BRACKET ;
 
 FieldExpression ::=
-    FIELD_NAME ;
+    FIELD_NAME {
+        mixin = "com.github.stengerh.intellij.foobar2000.titleformat.psi.impl.TitleFormatFieldExpressionMixin"
+    };
 
 FunctionCallExpression ::=
     FUNCTION_NAME LEFT_PAREN Expression? (COMMA Expression?)* RIGHT_PAREN ;
